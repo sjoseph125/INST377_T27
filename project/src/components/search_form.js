@@ -1,11 +1,8 @@
 import React from 'react'
 
-function Greet(){
+function Search(){
     return (<form className="search_form">
     <input type="text" className="search" placeholder="Search For A State"/>
     </form>)
 }
-
-// const Greet = () => <h1>Hello Samson</h1>
-
-export default Greet
+export default Search

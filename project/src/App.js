@@ -1,12 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-import Greet from './components/Greet'
-import Welcome from './components/Welcome'
+
+import Welcome from './components/Welcome';
+import Search from './components/search_form';
+
+// import Greet from './components/Greet';
 
 function App() {
   return (
     <div className="App">
-      <Greet/>
+      <Search/>
       <Welcome/>
     </div>
   );
