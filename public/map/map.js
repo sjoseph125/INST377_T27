@@ -1,11 +1,11 @@
 /* eslint-disable func-names */
 /* eslint-disable linebreak-style */
-$('#map').usmap({
-  click: function(event, data) {
-    $('#clicked-state');
-    console.log(data.name);
-  }
-});
+// $('#map').usmap({
+//   click: function(event, data) {
+//     $('#clicked-state');
+//     console.log(data.name);
+//   }
+// });
 
 // $('#map').usmap({showLabels: true});
 
