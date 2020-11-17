@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable camelcase */
 /* eslint-disable linebreak-style */
 /* eslint-disable no-console */
@@ -22,13 +23,25 @@ async function getContr(CID) {
   const contr_Res = await fetch(`https://www.opensecrets.org/api/?method=candContrib&cid=${CID}&cycle=2020&output=json&apikey=0e31f29705fa26f604e00f070aea5e11`);
   // console.log(contr_Res)
   const contributors = await contr_Res.json();
-  contr_arr.push(contributors.response.contributors);
+  contr_arr.push(contributors.response.contributors.contributor);
   console.log(contr_arr[0]);
 }
-const state = 'AR';
-const CID = getData(state);
+// const state = 'AR';
+// const CID = getData(state);
 // console.log(CID)
-CID.then((result) => {
-  getContr(result);
-  // console.log(result);
+// CID.then((result) => {
+//   getContr(result);
+//   // console.log(result);
+// });
+
+$('#map').usmap({
+  click: function(event, data) {
+    $('#clicked-state');
+    console.log(data.name);
+    const CID = getData(data.name);
+    CID.then((result) => {
+      getContr(result);
+      // console.log(result);
+    });
+  }
 });
