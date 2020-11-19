@@ -49,6 +49,13 @@ async function getContr(cid_name) {
   // console.log(contr_arr[0][0]);
   // [1][0]['@attributes'].org_name);
 }
+async function getContrByIndustry(cid_name) {
+  const industries = [];
+  const contrPool = await fetch(`https://www.opensecrets.org/api/?method=candIndByInd&cid=${cid_name[0]}&cycle=2020&output=json&apikey=165cf0bdb1b94281cb53560f4b66d567`);
+  const total_contributions = await contrPool.json();
+  console.log(total_contributions);
+  console.log("hello");
+}
 
 $('#map').usmap({
   click: function(event, data) {
