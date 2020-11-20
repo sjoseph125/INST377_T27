@@ -448,6 +448,7 @@
         FL: {x: 763, y: 508, z: 29}
       //  29: {x: 763, y: 518}
       };
+      console.log(otherStates['FL'].z)
       var textAttr = this.options.labelTextStyles;
       for (var state in otherStates) {
 	      // attributes for styling the text

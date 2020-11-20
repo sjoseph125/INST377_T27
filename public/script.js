@@ -7,6 +7,7 @@
 
 const top_contr = document.querySelector('.top_contr');
 
+const l_select = document.querySelector('.l_select');
 $(document).ready(() => {
   $('#map').usmap({});
 });
@@ -44,6 +45,10 @@ async function getIndustry(foobar) {
 async function getContr(cid_name) {
   const contr_arr = [];
   const org_total = [];
+async function getContr(cid_name) {
+  const contr_arr = [];
+  const org_total = [];
+  const names = [];
   const contr_Res = await fetch(`https://www.opensecrets.org/api/?method=candContrib&cid=${cid_name[0]}&cycle=2020&output=json&apikey=0e31f29705fa26f604e00f070aea5e11`);
   const contributors = await contr_Res.json();
   for (num in contributors.response.contributors.contributor) {
@@ -102,6 +107,23 @@ async function getContrByIndustry(foobar2) {
 }
 // End Jooyong Function 2
 
+  // console.log(contr_arr);
+  names.push(cid_name[1])
+  console.log(cid_name[1])
+  const html = names.map((place) => `
+        <li>
+            <span class= "name">${place}</span> <br>
+        </li>
+    `).join('');
+  top_contr.innerHTML += html;
+  const options = names.map((name) => `
+      <option>
+          ${name}
+      </option>
+`).join('');
+  // document.createElement('options')
+  l_select.innerHTML += options;
+}
 
 $('#map').usmap({
   click: function(event, data, data2) { // Added data2 parameter to function, don't think it breaks map
