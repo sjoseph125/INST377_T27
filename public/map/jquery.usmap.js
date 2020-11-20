@@ -445,9 +445,10 @@
         9: {x: 758, y: 386},
         GA: {x: 710, y: 410},
         16: {x: 710, y: 420},
-        FL: {x: 763, y: 508},
-        29: {x: 763, y: 518}
+        FL: {x: 763, y: 508, z:29},
+        // 29: {x: 763, y: 518}
       };
+      console.log(otherStates['FL'].z)
       var textAttr = this.options.labelTextStyles;
       for (var state in otherStates) {
 	      // attributes for styling the text
