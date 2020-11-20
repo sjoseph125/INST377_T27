@@ -472,9 +472,9 @@
 	      this.labelHitAreas[state].node.dataState = state;
       }
 
-      for(var state in otherStates){
+      /*for(var state in otherStates){
         console.log(otherStates[state].z + ":" + state + " " + "Legislature count");
-      }
+      }*/
 
       // Bind events
       for (var state in this.labelHitAreas) {
