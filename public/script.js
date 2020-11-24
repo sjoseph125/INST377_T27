@@ -11,6 +11,7 @@ let org_total = [];
 let ind_Total = [];
 let numLegs;
 let counter;
+let rep;
 const Samsons_key = '0e31f29705fa26f604e00f070aea5e11';
 const Jooyongs_key = '165cf0bdb1b94281cb53560f4b66d567';
 
@@ -36,7 +37,10 @@ async function getData(state) {
   // console.log(leg[0]);
   state_Data = leg;
   numLegs = leg[0].length;
-  console.log(numLegs)
+  rep = numLegs - 2;
+  chosen_State.innerText = `Your chosen state is ${state} which has ${rep} Representatives and 2 Senators`;
+
+  console.log(rep)
   return leg[0];
 }
 
@@ -116,8 +120,9 @@ $('.map').usmap({
     $('#clicked-state');
     $('.options').remove();
     $('.contr_list').remove();
-    chosen_State.innerText = `Your chosen state is ${data.name}`;
     const CID = getData(data.name);
+    console.log(numLegs)
+    
     cid_name = [];
     counter = 0;
 
