@@ -22,7 +22,7 @@ const ic_results = document.querySelector('.ic_results');
 const chosen_State = document.querySelector('.chosen_State');
 
 $(document).ready(() => {
-  $('#map').usmap({});
+  $('.map').usmap({});
 });
 
 async function getData(state) {
@@ -44,22 +44,6 @@ async function getData(state) {
   return leg[0];
 }
 
-// Beginning Jooyong Function 1
-async function getIndustry(foobar) {
-  const pattern1 = [];
-  const respo = await fetch(`http://www.opensecrets.org/api/?method=getLegislators&id=${foobar}&output=json&apikey=165cf0bdb1b94281cb53560f4b66d567`);
-  const data2 = await respo.json();
-
-  pattern1.push(data2.response.legislator);
-  // ['@attributes'].cid);
-
-  // console.log(leg[0]);
-  return pattern1[0];
-}
-//End Jooyong Function 1
-
-
-
 async function getContr(cid_name) {
   counter += 1;
   // console.log(counter)
@@ -74,7 +58,11 @@ async function getContr(cid_name) {
   );
   const contributors = await contr_Res.json();
   for (num in contributors.response.contributors.contributor) {
-    org_total.push([contributors.response.contributors.contributor[num]['@attributes'].org_name, contributors.response.contributors.contributor[num]['@attributes'].total]);
+    org_total.push([
+      contributors.response.contributors.contributor[num]['@attributes']
+        .org_name,
+      contributors.response.contributors.contributor[num]['@attributes'].total
+    ]);
   }
   leg_names.push(cid_name[1]);
   
@@ -87,13 +75,12 @@ async function getContr(cid_name) {
   }
 }
 
-// Beginning Jooyong Function 2
 async function getContrByIndustry(cid_name) {
   const array1 = [];
   ind_Total = [];
   const ind_Names = [];
   const industry_js = await fetch(
-    `https://www.opensecrets.org/api/?method=candIndustry&cid=${cid_name[0]}&cycle=2020&output=json&apikey=165cf0bdb1b94281cb53560f4b66d567`
+    `https://www.opensecrets.org/api/?method=candIndustry&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Jooyongs_key}`
   );
   const industries = await industry_js.json();
   for (num in industries.response.industries.industry) {
@@ -104,13 +91,31 @@ async function getContrByIndustry(cid_name) {
   }
   ind_Names.push(cid_name[1]);
   array1.push(cid_name[1], ind_Total);
-  // console.log(array1);
 
   if (counter > numLegs) {
     display_IndustryContr();
   }
-  // // End Jooyong Function 2
 }
+// Beginning Summary Function
+async function getSummary(foobar3) {
+  const array3 = [];
+  const summs = [];
+  const totals_js = await fetch(`https://www.opensecrets.org/api/?method=candSummary&cid=${foobar3[0]}&cycle=2020&output=json&apikey=${Jooyongs_key}`);
+  const candsumm = await totals_js.json();
+  for (num in candsumm.response.candsumm.candsummary) {
+    summs.push([
+      candsumm.response.candsummary[num]['@attributes'].spent,
+      candsumm.response.candsummary[num]['@attributes'].debt,
+      candsumm.response.candsummary[num]['@attributes'].source
+    ]);
+  }
+  array3.push(foobar3[1], summs);
+
+  if (counter > numLegs) {
+    display_IndustryContr();
+  }
+}
+// End Summary Function
 
 function filter_selection(evt) {
   selected = (evt.target.value);
@@ -141,7 +146,6 @@ $('.map').usmap({
     CID.then((result) => {
       // console.log(counter)
       for (num in result) {
-        // console.log(result[num]['@attributes']);
         id = result[num]['@attributes'].cid;
         leg_name = result[num]['@attributes'].firstlast;
         cid_name.push([id, leg_name]);
@@ -149,23 +153,9 @@ $('.map').usmap({
 
       // console.log(cid_name);
       for (num in cid_name) {
-        // console.log(cid_name[num]);
         getContr(cid_name[num]);
       }
     });
-    // Beginning Jooyong Function 3
-    const CID2 = getIndustry(data.name);
-    CID2.then((result2) => {
-      const cid_name2 = [];
-      for (num in result2) {
-        id = result2[num]['@attributes'].cid;
-        leg_name = result2[num]['@attributes'].firstlast;
-        cid_name2.push([id, leg_name]);
-      }
-      for (num in cid_name2) {
-        getContrByIndustry(cid_name2[num]);
-      }
-    }); // End Jooyong Function 3
   }
 });
 
