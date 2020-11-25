@@ -76,13 +76,12 @@ async function getContr(cid_name) {
   }
 }
 
-// Beginning Jooyong Function 2
 async function getContrByIndustry(cid_name) {
   const array1 = [];
   ind_Total = [];
   const ind_Names = [];
   const industry_js = await fetch(
-    `https://www.opensecrets.org/api/?method=candIndustry&cid=${cid_name[0]}&cycle=2020&output=json&apikey=165cf0bdb1b94281cb53560f4b66d567`
+    `https://www.opensecrets.org/api/?method=candIndustry&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Jooyongs_key}`
   );
   const industries = await industry_js.json();
   for (num in industries.response.industries.industry) {
@@ -93,12 +92,10 @@ async function getContrByIndustry(cid_name) {
   }
   ind_Names.push(cid_name[1]);
   array1.push(cid_name[1], ind_Total);
-  // console.log(array1);
 
   if (counter > numLegs) {
     display_IndustryContr();
   }
-  // // End Jooyong Function 2
 }
 // Beginning Summary Function
 async function getSummary(cid_name) {
