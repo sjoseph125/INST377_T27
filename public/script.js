@@ -154,6 +154,8 @@ $('.map').usmap({
       // console.log(cid_name);
       for (num in cid_name) {
         getContr(cid_name[num]);
+        getContrByIndustry(cid_name[num]);
+        getSummary(cid_name[num]);
       }
     });
   }
