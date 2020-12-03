@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
@@ -15,6 +16,7 @@ let rep;
 const Samsons_key = '0e31f29705fa26f604e00f070aea5e11';
 const Jooyongs_key = '165cf0bdb1b94281cb53560f4b66d567';
 
+const selection = document.querySelector('.l_select');
 const tc_results = document.querySelector('.tc_results');
 const l_select = document.querySelector('.l_select');
 const ic_results = document.querySelector('.ic_results');
@@ -41,7 +43,7 @@ async function getData(state) {
   rep = numLegs - 2;
   chosen_State.innerText = `Your chosen state is ${state} which has ${rep} Representatives and 2 Senators`;
 
-  console.log(rep)
+  console.log(leg)
   return leg[0];
 }
 
@@ -98,26 +100,29 @@ async function getContrByIndustry(cid_name) {
   }
 }
 // Beginning Summary Function
-async function getSummary(cid_name) {
-  const array3 = [];
-  const summs = [];
-  const totals_js = await fetch(`https://www.opensecrets.org/api/?method=candSummary&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Jooyongs_key}`);
-  const candsumm = await totals_js.json();
-  for (num in candsumm.response.candsumm.candsummary) {
-    summs.push([
-      candsumm.response.candsummary[num]['@attributes'].spent,
-      candsumm.response.candsummary[num]['@attributes'].debt,
-      candsumm.response.candsummary[num]['@attributes'].source
-    ]);
-  }
-  array3.push(cid_name[1], summs);
+// async function getSummary(cid_name) {
+//   const array3 = [];
+//   const summs = [];
+//   const totals_js = await fetch(`https://www.opensecrets.org/api/?method=candSummary&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Jooyongs_key}`);
+//   // const totals_js = await fetch(`https://www.opensecrets.org/api/?method=memPFDprofile&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Jooyongs_key}`);
+//   const candsumm = await totals_js.json();
+//   console.log(candsumm)
+//   for (num in candsumm.response.candsumm.candsummary) {
+//     summs.push([
+//       candsumm.response.candsummary[num]['@attributes'].spent,
+//       candsumm.response.candsummary[num]['@attributes'].debt,
+//       candsumm.response.candsummary[num]['@attributes'].source
+//     ]);
+//   }
+//   array3.push(cid_name[1], summs);
 
-  if (counter > numLegs) {
-    display_candSum();
-  }
-}
+//   if (counter > numLegs) {
+//     display_candSum();
+//   }
+// }
 // End Summary Function
 
+// Filter func
 function filter_selection(evt) {
   selected = (evt.target.value);
 
@@ -129,6 +134,7 @@ function filter_selection(evt) {
     if (selected === cid_name[x][1]) {
       getContr(cid_name[x]);
       getContrByIndustry(cid_name[x]);
+      getSummary(cid_name[x]);
     }
   }
 }
@@ -139,7 +145,7 @@ $('.map').usmap({
     $('.options').remove();
     $('.contr_list').remove();
     const CID = getData(data.name);
-    console.log(numLegs)
+    // console.log(numLegs)
     
     cid_name = [];
     counter = 0;
@@ -156,12 +162,13 @@ $('.map').usmap({
       for (num in cid_name) {
         getContr(cid_name[num]);
         getContrByIndustry(cid_name[num]);
-        getSummary(cid_name[num]);
+        
       }
     });
   }
 });
 
+// Dropdown Function
 function drop_down(leg_names) {
   const options = leg_names
     .map(
@@ -176,6 +183,7 @@ function drop_down(leg_names) {
   l_select.innerHTML += options;
 }
 
+// Individual Contributor display func
 function display_IndividualContr() {
   const html = org_total
     .map(
@@ -188,6 +196,8 @@ function display_IndividualContr() {
     .join('');
   tc_results.innerHTML = html;
 }
+
+// Industry Contributor display func
 function display_IndustryContr() {
   const html2 = ind_Total
     .map(
@@ -200,6 +210,7 @@ function display_IndustryContr() {
     .join('');
   ic_results.innerHTML = html2;
 }
+// Legislator summary display func
 function display_candSum() {
   const html3 = summs
     .map(
@@ -213,7 +224,7 @@ function display_candSum() {
   cs_results.innerHTML = html3;
 }
 
-const selection = document.querySelector('.l_select');
+
 
 selection.addEventListener('change', (event) => {
   filter_selection(event);
