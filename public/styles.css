@@ -24,13 +24,22 @@ body {
   font-size: 15pt;
   color: #2a2a2a;
 }
+.hero {
+  justify-content: space-between;
+  color: black;;
+  background-color: rgb(2, 224, 139);
+  text-align: center;
+}
+
 .columns, .column {
   display: inline;
   text-align: center;
+  flex: 1;
   font-size: 20pt;
   display: inline-block;
   text-transform: uppercase;
-  padding:30;
+  padding: 20;
+  
 }
 
 .wrapper {
@@ -65,10 +74,10 @@ body {
   text-align: center;
 }
 
-.header h2 {
+/* .header h2 {
   font-size: 18px;
   margin-bottom: 20px;
-}
+} */
 
 .search-form {
   display: flex;
@@ -108,11 +117,18 @@ li .name {
   padding-bottom: 3px;
 }
 
-@media (max-width: 400px) {
+/* .container, .map {
+  .is-horizontal-center{
+  justify-content: center;
+  }
+} */
+
+@media (max-width: 500px) {
   .search-form {
     width: 90%;
   }
 }
+
 
 
 /*.flex-outer li,
