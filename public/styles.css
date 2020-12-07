@@ -1,14 +1,45 @@
 /*CSS*/
+
+header {
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
 body {
-  background: #3895a8;
+  /* background: #3895a8; */
   background-image: radial-gradient(  
-  rgb(4, 243, 171), rgb(180, 255, 214)
+  rgb(29, 167, 231), rgb(53, 80, 235)
   );
   /*font-family: 'Baloo 2', cursive;*/
   /*font-family: 'Play', sans-serif;*/
   font-family: 'Barlow Semi Condensed', sans-serif;
-  font-size: 16pt;
+  font-size: 15pt;
   color: #2a2a2a;
+}
+.hero {
+  justify-content: space-between;
+  color: black;;
+  background-color: rgb(133, 250, 240);
+  text-align: center;
+}
+
+.columns, .column {
+  display: inline;
+  text-align: center;
+  flex: 1;
+  font-size: 20pt;
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 20;
+  
 }
 
 .wrapper {
@@ -18,6 +49,8 @@ body {
 
 .container {
   min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -34,17 +67,17 @@ body {
 }
 
 /* Enter YOUR lab styles after this line */
-.header * {
-  margin: 5px;
-}
+/* .header * {
+  margin: 10px;
+} */
 .header h1 {
   text-align: center;
 }
 
-.header h2 {
+/* .header h2 {
   font-size: 18px;
   margin-bottom: 20px;
-}
+} */
 
 .search-form {
   display: flex;
@@ -84,11 +117,18 @@ li .name {
   padding-bottom: 3px;
 }
 
-@media (max-width: 400px) {
+/* .container, .map {
+  .is-horizontal-center{
+  justify-content: center;
+  }
+} */
+
+@media (max-width: 500px) {
   .search-form {
     width: 90%;
   }
 }
+
 
 
 /*.flex-outer li,
