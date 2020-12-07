@@ -14,9 +14,9 @@ header {
 }
 
 body {
-  background: #3895a8;
+  /* background: #3895a8; */
   background-image: radial-gradient(  
-  rgb(4, 243, 171), rgb(180, 255, 214)
+  rgb(29, 167, 231), rgb(53, 80, 235)
   );
   /*font-family: 'Baloo 2', cursive;*/
   /*font-family: 'Play', sans-serif;*/
@@ -27,7 +27,7 @@ body {
 .hero {
   justify-content: space-between;
   color: black;;
-  background-color: rgb(2, 224, 139);
+  background-color: rgb(133, 250, 240);
   text-align: center;
 }
 
