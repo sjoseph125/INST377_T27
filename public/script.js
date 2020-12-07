@@ -53,7 +53,7 @@ async function getContr(cid_name) {
       contributors.response.contributors.contributor[num]['@attributes'].total
     ]);
   }
-  leg_names.push(cid_name[1]);
+  leg_names.push([cid_name[1], cid_name[2]]);
   
   contr_arr.push(cid_name[1], org_total);
   if (counter <= numLegs) {
@@ -113,7 +113,8 @@ function filter_selection(evt) {
     return;
   }
   for (x in cid_name) {
-    if (selected === cid_name[x][1]) {
+    if (selected === cid_name[x][1] + ' ' + cid_name[x][2]) {
+      console.log('hi')
       getContr(cid_name[x]);
       getContrByIndustry(cid_name[x]);
     }
@@ -125,19 +126,15 @@ $('.map').usmap({
     $('.options').remove();
     $('.contr_list').remove();
     const CID = getData(data.name);
-    console.log(numLegs)
-    
     cid_name = [];
     counter = 0;
     CID.then((result) => {
-      // console.log(counter)
       for (num in result) {
         id = result[num]['@attributes'].cid;
         leg_name = result[num]['@attributes'].firstlast;
-        // party = result[num]['@attributes'].party;
-        cid_name.push([id, leg_name]);
+        party = result[num]['@attributes'].party;
+        cid_name.push([id, leg_name, party]);
       }
-      // console.log(cid_name);
       for (num in cid_name) {
         getContr(cid_name[num]);
         getContrByIndustry(cid_name[num]);
@@ -151,7 +148,7 @@ function drop_down(leg_names) {
     .map(
       (name) => `
   <option class= options>
-      ${name}
+      ${name[0]} ${name[1]}
   </option>
 `
     )
