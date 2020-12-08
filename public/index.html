@@ -2,9 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <script src="map/raphael.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -19,10 +20,10 @@
     <section class = "hero">
             <div class = "hero-body">
                 <!-- <div class = "container"> -->
-                    <h1 class = "title">
+                    <h1 class = "title has-text-centered">
                         Home Page
                     </h1>
-        <div class="columns">
+        <div class="columns has-text-centered">
             <div class="column">
                 <a href="index.html">Home</a>
             </div>
@@ -49,22 +50,28 @@
                     </select>
                 </div>
 
-                <div class="top_contr">
-                  <p>Top Contributors</p>
-                  <div class="tc_results">
+                <div class="org_Contr">
+                  <p class="title">Top Contributors By Organizations</p>
+                  <div class="org_results">
+                    <ol class="org_results_list">
+                          
+                    </ol>
 
                   </div>
                 </div>
 
                 <div class="ind_Contr">
-                  <p>Top Contributions by Industry</p>
+                  <p class="title">Top Contributions by Industry</p>
                   <div class="ic_results">
+                      <ol class="result_list">
+
+                      </ol>
 
                   </div>
                 </div>
 
                 <div class="cand_summary">
-                  <p>Contact Info</p>
+                  <p class="title">Contact Info</p>
                   <div class="cs_results">
 
                   </div>
@@ -89,7 +96,7 @@
                     <button type="submit">Filter</button>
                 </form>
             </div>
-
+        </div>
         <script src="map/map.js"></script>
         <script src="script.js"></script>
             
