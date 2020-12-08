@@ -9,6 +9,8 @@
 let cid_name = [];
 let org_total = [];
 let ind_Total = [];
+// let leg_names = [];
+let contact = [];
 let numLegs;
 let counter;
 let rep;
@@ -18,6 +20,7 @@ const tc_results = document.querySelector('.tc_results');
 const l_select = document.querySelector('.l_select');
 const ic_results = document.querySelector('.ic_results');
 const cs_results = document.querySelector('.cs_results');
+const filter_box = document.querySelector('.filter_box');
 
 const chosen_State = document.querySelector('.chosen_State');
 
@@ -26,11 +29,14 @@ $(document).ready(() => {
 });
 async function getData(state) {
   const leg = [];
+  contact = [];
   const responce = await fetch(
     `http://www.opensecrets.org/api/?method=getLegislators&id=${state}&output=json&apikey=${Samsons_key}`
   );
   const data = await responce.json();
   leg.push(data.response.legislator);
+  console.log(leg[0]);
+
   state_Data = leg;
   numLegs = leg[0].length;
   rep = numLegs - 2;
@@ -54,7 +60,7 @@ async function getContr(cid_name) {
     ]);
   }
   leg_names.push([cid_name[1], cid_name[2]]);
-  
+
   contr_arr.push(cid_name[1], org_total);
   if (counter <= numLegs) {
     drop_down(leg_names);
@@ -113,13 +119,37 @@ function filter_selection(evt) {
     return;
   }
   for (x in cid_name) {
-    if (selected === cid_name[x][1] + ' ' + cid_name[x][2]) {
-      console.log('hi')
+    if (selected === `${cid_name[x][1]} ${cid_name[x][2]}`) {
       getContr(cid_name[x]);
       getContrByIndustry(cid_name[x]);
     }
   }
 }
+
+function filter_menu(event) {
+  const filter_arr = [];
+  const form = $(event.target).serializeArray();
+  if (form.length > 0) {
+    $('.options').remove();
+  }
+  // console.log(form.length);
+  // console.log(contact);
+  // const filtered = form.map((s) => {
+
+  const regex = new RegExp(form[0].name, 'gi');
+
+  //   console.log(s)
+  for (x = 0; x < contact.length; x++) {
+    if (contact[x][1].match(regex)) {
+      filter_arr.push([contact[x][0], contact[x][1]]);
+    }
+  }
+  console.log(filter_arr);
+
+  drop_down(filter_arr)
+  // 
+}
+
 $('.map').usmap({
   click: function (event, data) {
     $('#clicked-state');
@@ -127,6 +157,7 @@ $('.map').usmap({
     $('.contr_list').remove();
     const CID = getData(data.name);
     cid_name = [];
+    contact = [];
     counter = 0;
     CID.then((result) => {
       for (num in result) {
@@ -134,6 +165,9 @@ $('.map').usmap({
         leg_name = result[num]['@attributes'].firstlast;
         party = result[num]['@attributes'].party;
         cid_name.push([id, leg_name, party]);
+        congress_office = result[num]['@attributes'].congress_office;
+        phone_num = result[num]['@attributes'].phone;
+        contact.push([leg_name, party, congress_office, phone_num]);
       }
       for (num in cid_name) {
         getContr(cid_name[num]);
@@ -143,7 +177,9 @@ $('.map').usmap({
     });
   }
 });
+
 function drop_down(leg_names) {
+  // console.log(leg_names)
   const options = leg_names
     .map(
       (name) => `
@@ -179,18 +215,18 @@ function display_IndustryContr() {
     .join('');
   ic_results.innerHTML = html2;
 }
-// function display_candSum() {
-//   const html3 = summs
-//     .map(
-//       (place) => `
-//       <li class=contr_list>
-//           <span class= "name">${place[0]} donated $${place[1]}</span> <br>
-//       </li>
-//   `
-//     )
-//     .join('');
-//   cs_results.innerHTML = html3;
-// }
+function display_candSum() {
+  const html3 = summs
+    .map(
+      (place) => `
+      <li class=contr_list>
+          <span class= "name">${place[0]} donated $${place[1]}</span> <br>
+      </li>
+  `
+    )
+    .join('');
+  cs_results.innerHTML = html3;
+}
 
 const selection = document.querySelector('.l_select');
 
@@ -198,38 +234,10 @@ selection.addEventListener('change', (event) => {
   filter_selection(event);
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function filter_menu() {
-//   $checked = "";
-//   // let checked_filters = document.getElementsByName('f_input');
-//   for (x = 0; x < 5; x++) {
-//     checked_filters = document.filter_options.f_input[x].checked;
-//     if (checked_filters) {
-//       $checked += (document.filter_options.f_input[x].value);
-//     }
-//   }
-//   console.log($checked)
-
-// }
-
-// filter_button.addEventListener('click', async() => {
-//   filter_menu();
-// }); 
+filter_box.addEventListener('submit', async(event) => {
+  event.preventDefault();
+  filter_menu(event);
+});
 //  () => {
 //   ;
 // });
