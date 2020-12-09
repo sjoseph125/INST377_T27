@@ -26,9 +26,9 @@
         
                     </a>
                   </div>
-                <div class="navbar-menu"  id="nav-links">
+                <div class="navbar-menu is-dark"  id="nav-links">
                 <!-- <div class="navbar-end"> -->
-                    <a class="navbar-item center" href="index.html">Home</a>
+                    <a class="navbar-item is-white" href="index.html">Home</a>
                     <a class="navbar-item" href="About.html">About</a>
                     <a class="navbar-item" href="Documentation.html">Document</a>
                 <!-- </div> -->
@@ -36,15 +36,15 @@
             </nav>
             <section class="section">
                 <div class="container">
-                    <div class="map" style="width: 930px; height: 630px; border: solid 3px black;"></div>
+                    <div class="map" style="width: 930px; height: 630px; border: solid 3px white;"></div>
                 </div>
             </section>
 
             <section class="section">
                 <div class="results">
                     
-                    <div class="container">
-                    <p class="chosen_State"></p>
+                    <div class="container py-4">
+                    <p class="subtitle" id="chosen_State">The State you hae chosen is: </p>
                         <select name="legislators" class="l_select">
 
                             <option value="">Choose A Legislator</option>
@@ -89,8 +89,8 @@
                  
 
                     <div class="filter_Box">
-                        <form class="filters">
-                            
+                        <form class="filters" style="border: white;">
+                            <label>Filter Menu</label> <br>
                             <input type="checkbox" name="Representatives" id="checkbox_1">
                             <label for="checkbox_1">Representatives</label><br>
                             <input type="checkbox" name="Senators" id="checkbox_2">

@@ -23,7 +23,7 @@ const cs_results = document.querySelector('.cs_results');
 const filter_box = document.querySelector('.filter_box');
 
 
-const chosen_State = document.querySelector('.chosen_State');
+const chosen_State = document.querySelector('#chosen_State');
 
 $(document).ready(() => {
   $('.map').usmap({});
@@ -41,7 +41,8 @@ async function getData(state) {
   state_Data = leg;
   numLegs = leg[0].length;
   rep = numLegs - 2;
-  chosen_State.innerText = `Your chosen state is ${state} which has ${rep} Representatives and 2 Senators`;
+  chosen_State.innerText = `The State you hae chosen is: ${state} which has ${rep} Representatives and 2 Senators`;
+  // (state, ' ', 'which has', ' ', rep, ' ', 'Representatives and 2 Senators');
   return leg[0];
 }
 async function getContr(cid_name) {

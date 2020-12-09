@@ -1,32 +1,41 @@
 
-/* .navbar.is-white, .navbar-menu, .navbar-burger{
+.navbar.is-dark {
   background-color:#261C24 !important;
-} */
+  color: white !important;
+}
+
+.navbar-menu {
+  background-color: #2f232d !important;
+}
 
 .wrapper {
   /* background-color:#72B7BC !important; */
   background-color:#091326 !important;
   
-  color: white;
-}
-
-.title, .navbar-item {
   color: white !important;
 }
 
-.org_contr, .ind_Contr, .cand_summary {
-  margin-bottom: 15rem !important;
-  
+.title, .subtitle, .navbar-item {
+  color: white !important;
 }
+
+/* .org_contr, .ind_Contr, .cand_summary {
+  /* margin-bottom: 15rem !important; */
+  
+/* }  */
 
 .results {
   background-color: #261C24 !important;
-  margin-bottom: 15rem !important;
-  ;
+  /* margin-bottom: 15rem !important; */
+  
 }
 
-.cs_results {
-  background-color: #261C24 !important;
+.ic_results, .org_results {
+  background-color: #2f232d !important;
+}
+
+.l_select {
+  align-content: space-around !important;
 }
 
 .filter_box {
@@ -35,6 +44,14 @@
   margin-right: 53rem !important;
   margin-left: 53rem !important;
 }
+
+/* #doc_info {
+  /* margin: 90px !important; */
+  /* margin-left: 250px !important;
+  margin-right: 250px !important;
+  justify-items: center !important;
+  align-items: center !important; */
+} */
 
 /* header {
   color: #000;
@@ -159,8 +176,8 @@ body {
   }
 } */
 
-/* @media (max-width: 500px) {
-  .search-form {
-    width: 90%;
+/* @media (max-width: 1000px) {
+  #doc_info {
+    margin: auto !important;
   }
 } */
