@@ -4,7 +4,9 @@
 } */
 
 .wrapper {
+  /* background-color:#72B7BC !important; */
   background-color:#091326 !important;
+  
   color: white;
 }
 
