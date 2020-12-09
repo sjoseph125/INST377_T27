@@ -22,10 +22,18 @@
 .results {
   background-color: #261C24 !important;
   margin-bottom: 15rem !important;
+  ;
 }
 
 .cs_results {
   background-color: #261C24 !important;
+}
+
+.filter_box {
+  background-color: black;
+  flex-direction: column-reverse !important;
+  margin-right: 53rem !important;
+  margin-left: 53rem !important;
 }
 
 /* header {
