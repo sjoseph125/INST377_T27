@@ -22,6 +22,7 @@ const ic_results = document.querySelector('.result_list');
 const cs_results = document.querySelector('.cs_results');
 const filter_box = document.querySelector('.filter_box');
 
+
 const chosen_State = document.querySelector('.chosen_State');
 
 $(document).ready(() => {
@@ -31,7 +32,7 @@ async function getData(state) {
   const leg = [];
   contact = [];
   const responce = await fetch(
-    `http://www.opensecrets.org/api/?method=getLegislators&id=${state}&output=json&apikey=${Samsons_key}`
+    `http://www.opensecrets.org/api/?method=getLegislators&id=${state}&output=json&apikey=${Jooyongs_key}`
   );
   const data = await responce.json();
   leg.push(data.response.legislator);
@@ -238,6 +239,4 @@ filter_box.addEventListener('submit', async(event) => {
   event.preventDefault();
   filter_menu(event);
 });
-//  () => {
-//   ;
-// });
+
