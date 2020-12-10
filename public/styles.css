@@ -32,6 +32,11 @@
 
 .ic_results, .org_results, .ci_results {
   background-color: #2f232d !important;
+  min-height: 240px !important;
+}
+
+.ci_results {
+  min-height: 100px !important;
 }
 
 .l_select {
