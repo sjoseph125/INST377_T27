@@ -30,7 +30,7 @@
   
 }
 
-.ic_results, .org_results {
+.ic_results, .org_results, .ci_results {
   background-color: #2f232d !important;
 }
 
@@ -40,9 +40,9 @@
 
 .filter_box {
   background-color: black;
-  flex-direction: column-reverse !important;
+  /* flex-direction: column-reverse !important;
   margin-right: 53rem !important;
-  margin-left: 53rem !important;
+  margin-left: 53rem !important; */
 }
 
 /* #doc_info {
