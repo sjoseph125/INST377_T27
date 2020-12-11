@@ -19,6 +19,11 @@
   color: white !important;
 }
 
+.subtitle {
+  background-color: #2f232d !important;
+  max-width: 700px !important;
+}
+
 /* .org_contr, .ind_Contr, .cand_summary {
   /* margin-bottom: 15rem !important; */
   
@@ -26,7 +31,6 @@
 
 .results {
   background-color: #261C24 !important;
-  dis
   /* margin-bottom: 15rem !important; */
   
 }
@@ -46,6 +50,7 @@
 
 .filter_box {
   background-color: black;
+  max-width: 200px !important;
   /* flex-direction: column-reverse !important;
   margin-right: 53rem !important;
   margin-left: 53rem !important; */

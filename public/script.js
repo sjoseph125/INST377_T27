@@ -40,7 +40,7 @@ async function getData(state) {
   state_Data = leg;
   numLegs = leg[0].length;
   rep = numLegs - 2;
-  chosen_State.innerText = `The State you hae chosen is: ${state} which has ${rep} Representatives and 2 Senators`;
+  chosen_State.innerText = `The State you have chosen is: ${state} which has ${rep} Representatives and 2 Senators`;
   return leg[0];
 }
 async function getContr(cid_name) {
