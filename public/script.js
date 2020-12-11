@@ -50,7 +50,7 @@ async function getContr(cid_name) {
   org_total = [];
   const leg_names = [];
   const contr_Res = await fetch(
-    `https://www.opensecrets.org/api/?method=candContrib&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Jooyongs_key}`
+    `https://www.opensecrets.org/api/?method=candContrib&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Samsons_key}`
   );
   const contributors = await contr_Res.json();
   for (num in contributors.response.contributors.contributor) {
@@ -77,7 +77,7 @@ async function getContrByIndustry(cid_name) {
   ind_Total = [];
   const ind_Names = [];
   const industry_js = await fetch(
-    `https://www.opensecrets.org/api/?method=candIndustry&cid=${cid_name[0]}&cycle=2020&output=json&apikey=165cf0bdb1b94281cb53560f4b66d567`
+    `https://www.opensecrets.org/api/?method=candIndustry&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Jooyongs_key}`
   );
   const industries = await industry_js.json();
   for (num in industries.response.industries.industry) {
