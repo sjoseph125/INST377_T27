@@ -41,7 +41,6 @@ async function getData(state) {
   numLegs = leg[0].length;
   rep = numLegs - 2;
   chosen_State.innerText = `The State you hae chosen is: ${state} which has ${rep} Representatives and 2 Senators`;
-  // (state, ' ', 'which has', ' ', rep, ' ', 'Representatives and 2 Senators');
   return leg[0];
 }
 async function getContr(cid_name) {
@@ -52,6 +51,7 @@ async function getContr(cid_name) {
   const contr_Res = await fetch(
     `https://www.opensecrets.org/api/?method=candContrib&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Samsons_key}`
   );
+  
   const contributors = await contr_Res.json();
   for (num in contributors.response.contributors.contributor) {
     org_total.push([
@@ -77,7 +77,7 @@ async function getContrByIndustry(cid_name) {
   ind_Total = [];
   const ind_Names = [];
   const industry_js = await fetch(
-    `https://www.opensecrets.org/api/?method=candIndustry&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Jooyongs_key}`
+    `https://www.opensecrets.org/api/?method=candIndustry&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Samsons_key}`
   );
   const industries = await industry_js.json();
   for (num in industries.response.industries.industry) {
