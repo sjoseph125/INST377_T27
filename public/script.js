@@ -16,13 +16,13 @@ let counter;
 let rep;
 const Samsons_key = '0e31f29705fa26f604e00f070aea5e11';
 const Jooyongs_key = '165cf0bdb1b94281cb53560f4b66d567';
-const tc_results = document.querySelector('.tc_results');
+const tc_results = document.querySelector('.org_results_list');
 const l_select = document.querySelector('.l_select');
-const ic_results = document.querySelector('.ic_results');
-const cs_results = document.querySelector('.cs_results');
+const ic_results = document.querySelector('.result_list');
+const ci_list = document.querySelector('.ci_list');
 const filter_box = document.querySelector('.filter_box');
 
-const chosen_State = document.querySelector('.chosen_State');
+const chosen_State = document.querySelector('#chosen_State');
 
 $(document).ready(() => {
   $('.map').usmap({});
@@ -31,7 +31,7 @@ async function getData(state) {
   const leg = [];
   contact = [];
   const responce = await fetch(
-    `http://www.opensecrets.org/api/?method=getLegislators&id=${state}&output=json&apikey=${Samsons_key}`
+    `https://www.opensecrets.org/api/?method=getLegislators&id=${state}&output=json&apikey=${Jooyongs_key}`
   );
   const data = await responce.json();
   leg.push(data.response.legislator);
@@ -40,7 +40,8 @@ async function getData(state) {
   state_Data = leg;
   numLegs = leg[0].length;
   rep = numLegs - 2;
-  chosen_State.innerText = `Your chosen state is ${state} which has ${rep} Representatives and 2 Senators`;
+  chosen_State.innerText = `The State you hae chosen is: ${state} which has ${rep} Representatives and 2 Senators`;
+  // (state, ' ', 'which has', ' ', rep, ' ', 'Representatives and 2 Senators');
   return leg[0];
 }
 async function getContr(cid_name) {
@@ -66,6 +67,7 @@ async function getContr(cid_name) {
     drop_down(leg_names);
   } else if (counter > numLegs) {
     display_IndividualContr();
+    // display_contact();
   }
 }
 
@@ -120,6 +122,7 @@ function filter_selection(evt) {
   }
   for (x in cid_name) {
     if (selected === `${cid_name[x][1]} ${cid_name[x][2]}`) {
+      display_contact(cid_name[x]);
       getContr(cid_name[x]);
       getContrByIndustry(cid_name[x]);
     }
@@ -146,8 +149,8 @@ function filter_menu(event) {
   }
   console.log(filter_arr);
 
-  drop_down(filter_arr)
-  // 
+  drop_down(filter_arr);
+  //
 }
 
 $('.map').usmap({
@@ -167,7 +170,9 @@ $('.map').usmap({
         cid_name.push([id, leg_name, party]);
         congress_office = result[num]['@attributes'].congress_office;
         phone_num = result[num]['@attributes'].phone;
-        contact.push([leg_name, party, congress_office, phone_num]);
+        website = result[num]['@attributes'].website;
+        twitter_id = result[num]['@attributes'].twitter_id;
+        contact.push([leg_name, party, congress_office, phone_num, website, twitter_id]);
       }
       for (num in cid_name) {
         getContr(cid_name[num]);
@@ -215,17 +220,109 @@ function display_IndustryContr() {
     .join('');
   ic_results.innerHTML = html2;
 }
-function display_candSum() {
-  const html3 = summs
+function display_contact(cid_name) {
+  console.log(cid_name);
+  console.log(contact);
+
+  const filter_name = contact.filter((name) => {
+    if (name[0] === cid_name[1]) {
+      return name;
+    }
+  });
+
+  const regexRussel = /Russell/;
+  const regexDirksen = /Dirksen/;
+  const regexHart = /Hart/;
+  const regexCannon = /Cannon/;
+  const regexLongworth = /Longworth/;
+  const regexRayburn = /Rayburn/;
+
+  if (regexRussel.test(filter_name)) {
+    // filter_name[2] = 'hi';
+    console.log(filter_name);
+    const office_address = filter_name
+      .map(
+        (info) => `
+          <li class=contr_list>
+              <span class= "name"> The Legislator's address is: ${info[2]}, 2 Constitution Ave NE, Washington, DC 20002</span> <br>
+          </li>
+      `
+      )
+      .join('');
+    ci_list.innerHTML = office_address;
+  } else if (regexDirksen.test(filter_name)) {
+    const office_address = filter_name
+      .map(
+        (info) => `
+        <li class=contr_list>
+            <span class= "name"> The Legislator's address is: ${info[2]}, 50 Constitution Ave NE, Washington, DC 20002</span> <br>
+        </li>
+    `
+      )
+      .join('');
+    ci_list.innerHTML = office_address;
+  } else if (regexHart.test(filter_name)) {
+    const office_address = filter_name
+      .map(
+        (info) => `
+        <li class=contr_list>
+            <span class= "name"> The Legislator's address is: ${info[2]}, 120 Constitution Ave NE, Washington, DC 20002</span> <br>
+        </li>
+    `
+      )
+      .join('');
+    ci_list.innerHTML = office_address;
+  } else if (regexCannon.test(filter_name)) {
+    const office_address = filter_name
+      .map(
+        (info) => `
+        <li class=contr_list>
+            <span class= "name"> The Legislator's address is: ${info[2]}, 27 Independence Ave SE, Washington, DC 20003</span> <br>
+        </li>
+    `
+      )
+      .join('');
+    ci_list.innerHTML = office_address;
+  } else if (regexLongworth.test(filter_name)) {
+    const office_address = filter_name
+      .map(
+        (info) => `
+        <li class=contr_list>
+            <span class= "name"> The Legislator's address is: ${info[2]}, 15 Independence Ave SE, Washington, DC 20515</span> <br>
+        </li>
+    `
+      )
+      .join('');
+    ci_list.innerHTML = office_address;
+  } else if (regexRayburn.test(filter_name)) {
+    const office_address = filter_name
+      .map(
+        (info) => `
+        <li class=contr_list>
+            <span class= "name"> The Legislator's address is: ${info[2]}, 45 Independence Ave SW, Washington, DC 20515</span> <br>
+        </li>
+    `
+      )
+      .join('');
+    ci_list.innerHTML = office_address;
+  }
+
+  const other_info = filter_name
     .map(
-      (place) => `
-      <li class=contr_list>
-          <span class= "name">${place[0]} donated $${place[1]}</span> <br>
-      </li>
-  `
+      (info) => `
+          <li class=contr_list>
+              <span class= "name"> The Legislator's phone number is: ${info[3]}</span> <br>
+          </li>
+          <li class=contr_list>
+              <span class= "name"> The Legislator's website is: <a href="${info[4]}">${info[4]}</a></span> <br>
+          </li>
+          <li class=contr_list>
+              <span class= "name"> The Legislator's twitter is: <a href="https://twitter.com/${info[5]}">${info[5]}</a></span> <br>
+          </li>
+      `
     )
     .join('');
-  cs_results.innerHTML = html3;
+  ci_list.innerHTML += other_info;
 }
 
 const selection = document.querySelector('.l_select');
@@ -238,6 +335,3 @@ filter_box.addEventListener('submit', async(event) => {
   event.preventDefault();
   filter_menu(event);
 });
-//  () => {
-//   ;
-// });
