@@ -94,26 +94,6 @@ async function getContrByIndustry(cid_name) {
   }
   // // End Jooyong Function 2
 }
-// Beginning Summary Function
-async function getSummary(cid_name) {
-  const array3 = [];
-  const summs = [];
-  const totals_js = await fetch(`https://www.opensecrets.org/api/?method=candSummary&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Jooyongs_key}`);
-  const candsumm = await totals_js.json();
-  for (num in candsumm.response.candsumm.candsummary) {
-    summs.push([
-      candsumm.response.candsummary[num]['@attributes'].spent,
-      candsumm.response.candsummary[num]['@attributes'].debt,
-      candsumm.response.candsummary[num]['@attributes'].source
-    ]);
-  }
-  array3.push(cid_name[1], summs);
-
-  if (counter > numLegs) {
-    display_candSum();
-  }
-}
-// End Summary Function
 
 function filter_selection(evt) {
   selected = (evt.target.value);
