@@ -9,11 +9,13 @@
 let cid_name = [];
 let org_total = [];
 let ind_Total = [];
-// let leg_names = [];
+let representatives;
+let senators = [];
 let contact = [];
 let numLegs;
 let counter;
 let rep;
+
 const Samsons_key = '0e31f29705fa26f604e00f070aea5e11';
 const Jooyongs_key = '165cf0bdb1b94281cb53560f4b66d567';
 const tc_results = document.querySelector('.org_results_list');
@@ -29,13 +31,22 @@ $(document).ready(() => {
 });
 async function getData(state) {
   const leg = [];
+  senators = [];
+  representatives = [];
   contact = [];
+
   const responce = await fetch(
     `https://www.opensecrets.org/api/?method=getLegislators&id=${state}&output=json&apikey=${Jooyongs_key}`
   );
   const data = await responce.json();
   leg.push(data.response.legislator);
-  console.log(leg[0]);
+
+  representatives = leg[0].map((x) => x);
+
+  senators.push(representatives.pop());
+  senators.push(representatives.pop());
+  console.log(representatives);
+  console.log(senators);
 
   state_Data = leg;
   numLegs = leg[0].length;
@@ -51,7 +62,7 @@ async function getContr(cid_name) {
   const contr_Res = await fetch(
     `https://www.opensecrets.org/api/?method=candContrib&cid=${cid_name[0]}&cycle=2020&output=json&apikey=${Samsons_key}`
   );
-  
+
   const contributors = await contr_Res.json();
   for (num in contributors.response.contributors.contributor) {
     org_total.push([
@@ -61,13 +72,11 @@ async function getContr(cid_name) {
     ]);
   }
   leg_names.push([cid_name[1], cid_name[2]]);
-
   contr_arr.push(cid_name[1], org_total);
   if (counter <= numLegs) {
     drop_down(leg_names);
   } else if (counter > numLegs) {
     display_IndividualContr();
-    // display_contact();
   }
 }
 
@@ -110,24 +119,36 @@ function filter_selection(evt) {
 }
 
 function filter_menu(event) {
-  const filter_arr = [];
+  let filter_arr = [];
   const form = $(event.target).serializeArray();
   if (form.length > 0) {
     $('.options').remove();
   }
 
-  const regex = new RegExp(form[0].name, 'gi');
+  if (form[0].name === 'Senators') {
+    for (x = 0; x < contact.length; x++) {
+      console.log(senators[x]);
 
-  //   console.log(s)
-  for (x = 0; x < contact.length; x++) {
-    if (contact[x][1].match(regex)) {
-      filter_arr.push([contact[x][0], contact[x][1]]);
+      filter_arr = senators.map((name) => ([name['@attributes'].firstlast, name['@attributes'].party]));
+    }
+  } else if (form[0].name === 'Representatives') {
+    for (x = 0; x < contact.length; x++) {
+      console.log(senators[x]);
+
+      filter_arr = representatives.map((name) => ([name['@attributes'].firstlast, name['@attributes'].party]));
+    }
+  } else {
+    const regex = new RegExp(form[0].name, 'gi');
+
+    //   console.log(s)
+    for (x = 0; x < contact.length; x++) {
+      if (contact[x][1].match(regex)) {
+        filter_arr.push([contact[x][0], contact[x][1]]);
+      }
     }
   }
   console.log(filter_arr);
-
   drop_down(filter_arr);
-  //
 }
 
 $('.map').usmap({
@@ -135,9 +156,11 @@ $('.map').usmap({
     $('#clicked-state');
     $('.options').remove();
     $('.contr_list').remove();
+
     const CID = getData(data.name);
     cid_name = [];
     contact = [];
+
     counter = 0;
     CID.then((result) => {
       for (num in result) {
@@ -154,14 +177,13 @@ $('.map').usmap({
       for (num in cid_name) {
         getContr(cid_name[num]);
         getContrByIndustry(cid_name[num]);
-        // getSummary(cid_name[num]);
       }
     });
   }
 });
 
 function drop_down(leg_names) {
-  // console.log(leg_names)
+  console.log(leg_names);
   const options = leg_names
     .map(
       (name) => `
@@ -215,7 +237,6 @@ function display_contact(cid_name) {
   const regexRayburn = /Rayburn/;
 
   if (regexRussel.test(filter_name)) {
-    // filter_name[2] = 'hi';
     console.log(filter_name);
     const office_address = filter_name
       .map(
