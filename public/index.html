@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Home</title>
-        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
         <script src="map/raphael.js"></script>
         <script
@@ -19,6 +19,9 @@
         <div class="wrapper">
             <nav class="navbar is-dark has-shadow is-white">
                 <div class="navbar-brand">
+                    <a class="navbar-item" href="https://www.ischool.umd.edu/" target="_blank">
+                        <img src="img/WhiteiSchoolLogo.png" style="max-height: 45px;">
+                    </a>
                     <a class="navbar-burger" id="burger">
                       <span></span>
                       <span></span>
@@ -27,11 +30,11 @@
                     </a>
                   </div>
                 <div class="navbar-menu is-dark"  id="nav-links">
-                <!-- <div class="navbar-end"> -->
-                    <a class="navbar-item is-white" href="index.html">Home</a>
-                    <a class="navbar-item" href="About.html">About</a>
-                    <a class="navbar-item" href="Documentation.html">Document</a>
-                <!-- </div> -->
+                    <div class="navbar-end">
+                        <a class="navbar-item is-white" href="index.html">Home</a>
+                        <a class="navbar-item" href="About.html">About</a>
+                        <a class="navbar-item" href="Documentation.html">Document</a>
+                    </div>
                 </div>
             </nav>
             <section class="section">
@@ -44,7 +47,7 @@
 
             <!-- <section class="section"> -->
                 <div class="columns">
-                    <div class="column is-2 ml-4">
+                    <div class="column is-2 ml-5 mr-3">
 
                         <div class="filter_Box">
                             <form class="filters" style="border: white;">
@@ -112,8 +115,8 @@
                 
             <!-- </section> -->
         </div>
-        <script src="bulma_script.js"></script>
-        <script src="script.js"></script>
+        <script src="js/bulma_script.js"></script>
+        <script src="js/script.js"></script>
         
                 
     </body>

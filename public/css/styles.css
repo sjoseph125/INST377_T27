@@ -8,7 +8,6 @@
 }
 
 .wrapper {
-  background-color:#72B7BC !important;
   background-color:#091326 !important;
   min-width: fit-content;
   font-size: 1.5em !important;
@@ -44,7 +43,7 @@
 .ci_results {
   min-height: 100px !important;
   background-color: #2f232d !important;
-  max-width: 800px !important;
+  max-width: 1170px !important;
 
 }
 
@@ -59,8 +58,5 @@
 .filter_box {
   background-color: black;
   max-width: 200px !important;
-  order: 1 !important;
-  /* flex-direction: column-reverse !important;
-  margin-right: 53rem !important;
-  margin-left: 53rem !important;
+  font: size 1 !important;
 }
