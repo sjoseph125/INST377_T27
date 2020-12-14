@@ -45,8 +45,6 @@ async function getData(state) {
 
   senators.push(representatives.pop());
   senators.push(representatives.pop());
-  console.log(representatives);
-  console.log(senators);
 
   state_Data = leg;
   numLegs = leg[0].length;
@@ -183,7 +181,6 @@ $('.map').usmap({
 });
 
 function drop_down(leg_names) {
-  console.log(leg_names);
   const options = leg_names
     .map(
       (name) => `
@@ -312,10 +309,10 @@ function display_contact(cid_name) {
               <span class= "name"> The Legislator's phone number is: ${info[3]}</span> <br>
           </li>
           <li class=contr_list>
-              <span class= "name"> The Legislator's website is: <a href="${info[4]}">${info[4]}</a></span> <br>
+              <span class= "name"> The Legislator's website is: <a href="${info[4]}" target="_blank">${info[4]}</a></span> <br>
           </li>
           <li class=contr_list>
-              <span class= "name"> The Legislator's twitter is: <a href="https://twitter.com/${info[5]}">${info[5]}</a></span> <br>
+              <span class= "name"> The Legislator's twitter is: <a href="https://twitter.com/${info[5]}" target="_blank">${info[5]}</a></span> <br>
           </li>
       `
     )
