@@ -115,9 +115,6 @@ function filter_menu(event) {
   if (form.length > 0) {
     $('.options').remove();
   }
-  // console.log(form.length);
-  // console.log(contact);
-  // const filtered = form.map((s) => {
 
   const regex = new RegExp(form[0].name, 'gi');
 

@@ -1,4 +1,3 @@
-
 .navbar.is-dark {
   background-color:#261C24 !important;
   color: white !important;
@@ -9,8 +8,9 @@
 }
 
 .wrapper {
-  /* background-color:#72B7BC !important; */
+  background-color:#72B7BC !important;
   background-color:#091326 !important;
+  min-width: fit-content;
   
   color: white !important;
 }
@@ -24,14 +24,14 @@
   max-width: 700px !important;
 }
 
-/* .org_contr, .ind_Contr, .cand_summary {
-  /* margin-bottom: 15rem !important; */
+.org_contr, .ind_Contr, .cand_summary {
+  margin-bottom: 10rem !important;
   
-/* }  */
+} 
 
 .results {
-  background-color: #261C24 !important;
-  /* margin-bottom: 15rem !important; */
+  background-color: #261C24 !important; 
+  margin-bottom: 15rem !important;
   
 }
 
@@ -51,9 +51,10 @@
 .filter_box {
   background-color: black;
   max-width: 200px !important;
+  order: 1 !important;
   /* flex-direction: column-reverse !important;
   margin-right: 53rem !important;
-  margin-left: 53rem !important; */
+  margin-left: 53rem !important;
 }
 
 /* #doc_info {
