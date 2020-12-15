@@ -1,3 +1,10 @@
+# README
+
+- ## Transparency in Politics
+- Our project uses the OpenSecrets API to get information regarding donations made to a selected legislator. We show the ten highest donars among individual organizations and industries. The scope of our application is to create more transperency between elected officials and their electors, i.e. the general public.
+
+- This is the link to a live instance of the application: https://inst377-t27.herokuapp.com/
+
 # User Manual
 
 1. Click on the state of your choosing. Once selected, the chose state will appear below along with the number of representatives and senators it has.
@@ -15,10 +22,12 @@
 2. This application was built using the Node.js JavaScript runtime environment, which you must install. You will also need to install the Express Web framework as well as the nodemon module.
 
 3. We are using three fetch requests from the OpenSecrets API.
-    - The first fetch request uses the getLegislators method of the API. We pass in the state code as well as an API key to get the relevant data.
+    - The first fetch request uses the getLegislators method of the API. We pass in the state code as well as an API key to get the relevant data. This data from this method is also used to populate the Contact Info section.
 
     - Next we use the candContrib method of the API to get information on the individual organizations who have contributed to the selected legislator. The API limits this to the 10 highest contributors.
 
     - The final fetch request uses the candIndustry method of the API and functions very similarly to the candContrib method. The candIndustry method returns the 10 highest contributors by industry.
+
+4. The biggest issue one might come across while using the application is API call limits. We are using two different API keys just to have redundancy, but we highly suggest to get your own key from OpenSecrets to keep track of your usage. The three methods we use have a limit 200 a day. This is a bit decieving, as the number of calls for candContrib and candIndustry methods entirely depends on the number of legislators the selected state has. If there are 20 legislators, you call those two methods 20 times. The getLegislators method goes down by one everytime a new state is selected.
 
 

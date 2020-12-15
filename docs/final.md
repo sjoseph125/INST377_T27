@@ -1,7 +1,7 @@
-# Transperency in Politics
+# Transparency in Politics
 ### by: Samson Joseph, Jooyong Song, Jean Didier Ernest, Aaron  Abshire
 - Link: https://inst377-t27.herokuapp.com/
-- Information Problem: We are solving about the need for more transperency between elected officialsn and their donors. There needs to be more accessible information to the public about where legislator's campaign money is coming from, as the American people voting for them can see whom they side with and their values on voting. This way, people can have a more informed decision before voting for someone to office.
+- Information Problem: We are solving about the need for more transperency between elected officials and their donors. There needs to be more accessible information to the public about where legislator's campaign money is coming from, as the American people voting for them can see whom they side with and their values on voting. This way, people can have a more informed decision before voting for someone to office.
 - Our stakeholders are our group, the instructional team, as well as the American people.
 - We are working with the API offered by The Center for Responsive Politics.
 - How we tackled this problem is we will list the elected officials information by state. The user will click on their desired state on the United States map on the home screen, where they can filter between Representatives, Senators, Democrats, and Republicans. We will then provide the user information about who their top contributors by both organization, as well as industry. Providing the names and amount of money contributed. We also are providing their office address, phone number, website and twitter account. This provides the user with the best information with ease.
