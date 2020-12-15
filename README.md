@@ -16,7 +16,7 @@
 
 1. Click on the state of your choosing. Once selected, the chosen state will appear below along with the number of representatives and senators it has.
 
-2. You can choose which legislator to inspect by clicking on the dropdown menu. This might take a few seconds to update, so please be patient.
+2. You can choose which legislator to inspect by clicking on the dropdown menu. This might take a few seconds to update, so please be patient. Beside each name there is an R or D, refering to the party they are a member of
 
 3. The filter menu can help you fine-tune your options in the dropdown menu. Selecting a checkbox and hitting filter will reset the dropdown menu with options that fall under the selected filter. You can only select one box at a time though, we did not have the time to figure out multiple boxes. 
 
