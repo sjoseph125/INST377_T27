@@ -5,6 +5,8 @@
 
 - This is the link to a live instance of the application: https://inst377-t27.herokuapp.com/
 
+- Our application seems to work equally well on IOS and Android browsers.
+
 - This is the link to the API we are using: https://www.opensecrets.org/open-data/api
 
 # User Manual
