@@ -1,6 +1,6 @@
 # README
 
-- ## Transparency in Politics
+## Transparency in Politics
 - Our project uses the OpenSecrets API to get information regarding donations made to a selected legislator. We show the ten highest donars among individual organizations and industries. The scope of our application is to create more transperency between elected officials and their electors, i.e. the general public.
 
 - This is the link to a live instance of the application: https://inst377-t27.herokuapp.com/
