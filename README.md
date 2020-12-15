@@ -5,6 +5,8 @@
 
 - This is the link to a live instance of the application: https://inst377-t27.herokuapp.com/
 
+- This is the link to the API we are using: https://www.opensecrets.org/open-data/api
+
 # User Manual
 
 1. Click on the state of your choosing. Once selected, the chose state will appear below along with the number of representatives and senators it has.
