@@ -16,8 +16,8 @@ let numLegs;
 let counter;
 let rep;
 
-const Samsons_key = '0e31f29705fa26f604e00f070aea5e11';
-const Jooyongs_key = '165cf0bdb1b94281cb53560f4b66d567';
+const Samsons_key = '';
+const Jooyongs_key = '';
 const tc_results = document.querySelector('.org_results_list');
 const l_select = document.querySelector('.l_select');
 const ic_results = document.querySelector('.result_list');
